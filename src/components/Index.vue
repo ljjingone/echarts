@@ -1,6 +1,9 @@
 <template>
+<div>
   <div id="hello" style="width: 100%;height: 600px;">
     
+  </div>
+  
   </div>
 </template>
 
@@ -89,7 +92,7 @@ export default {
                 },
                  itemStyle: {
                     normal: {
-                        color: "black",
+                        // color: "black",
                         
                     }
                 }
@@ -115,8 +118,8 @@ export default {
       this.$ajax.get('http://127.0.0.1:3001/hangqing').then((res)=>{
         res.data.forEach((item)=>{
           this.Xmath.push(item.name)
-          this.Ymath.push(item.buy)
-          this.Y1math.push(item.sell)
+          this.Y1math.push(item.buy)
+          this.Ymath.push(item.sell)
           
         })
           this.charts.setOption({
@@ -125,9 +128,10 @@ export default {
             },
             series:[{ data: self.Ymath},{ data: self.Y1math}]
           })
-          console.log(this.Xmath)
-          console.log(this.Ymath)
-          console.log(this.Y1math)
+          this.charts.resize();
+          // console.log(this.Xmath)
+          // console.log(this.Ymath)
+          // console.log(this.Y1math)
       })
       
         
@@ -135,19 +139,38 @@ export default {
       }
     },
     created(){
-      
+     
   
      
     },
   //调用
     mounted(){
-        this.$nextTick(function() {
-            this.drawPie('hello')
-        })
+
+       var ws = new WebSocket("ws://192.168.1.27:8888/ws");
+        ws.onopen = function(evt) { 
+          console.log("Connection open ..."); 
+          ws.send("Hello WebSockets!");
+        };
+
+        ws.onmessage = (evt)=> {
+          console.log( "Received Message: " + evt.data);
+          this.drawPie('hello')
+        };
+
+        ws.onclose = function(evt) {
+          console.log("Connection closed.");
+        }; 
+        ws.onerror = function(evt) {
+          console.log("Connection error.");
+        }; 
+        this.drawPie('hello')
+        // this.$nextTick(function() {
+            
+        // })
         
             //  console.log(this.option.series[0].data)
     }
-    }
+  }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -169,6 +192,6 @@ li {
   margin: 0 10px;
 }
 a {
-  color: #42b983;
+  color: #00ff8c;
 }
 </style>
