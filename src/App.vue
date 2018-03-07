@@ -1,16 +1,16 @@
 <template>
   <div id="app">
-    <HelloWorld/>
+    <Index/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
+import Index from './components/Index'
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Index
   }
 }
 </script>
