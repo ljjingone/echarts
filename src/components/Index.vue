@@ -3,7 +3,7 @@
   <div id="hello" style="width: 100%;height: 600px;">
     
   </div>
-  <button @click="start()">start</button>
+  <button @click="start() ">start</button>
   <button @click="stop()">stop</button>
   </div>
 </template>
