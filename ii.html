@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>菜鸟教程(runoob.com)</title>
+</head>
+<body>
+
+<p>点击按钮列出数组的每个元素。</p>
+<button onclick="numbers.forEach(myFunction)">点我</button>
+<p id="demo"></p>
+
+<script>
+demoP = document.getElementById("demo");
+var numbers = [{aa:24},{aa:23},{aa:21},{aa:22}];
+
+function myFunction(item, index) {
+    demoP.innerHTML = demoP.innerHTML + "index[" + index + "]: " + item.aa + "<br>"; 
+}
+</script>
+
+</body>
+</html>
