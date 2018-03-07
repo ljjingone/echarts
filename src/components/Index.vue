@@ -3,7 +3,8 @@
   <div id="hello" style="width: 100%;height: 600px;">
     
   </div>
-  
+  <button @click="start()">start</button>
+  <button @click="stop()">stop</button>
   </div>
 </template>
 
@@ -21,7 +22,7 @@ export default {
       }
   },
   methods:{
-      drawPie(id){
+      drawPie(id,data){
           var self=this;
           this.charts = echarts.init(document.getElementById(id))
           this.charts.setOption({
@@ -116,6 +117,9 @@ export default {
             ]
       })
       this.$ajax.get('http://127.0.0.1:3001/hangqing').then((res)=>{
+        this.Xmath=[];
+        this.Y1math=[];
+        this.Ymath=[];
         res.data.forEach((item)=>{
           this.Xmath.push(item.name)
           this.Y1math.push(item.buy)
@@ -136,6 +140,26 @@ export default {
       
         
         
+      },
+      stop(){
+        console.log("stop")
+          var ws = new WebSocket("ws://192.168.1.27:8888/ws");
+          var stop={"cmd":"stop"}
+          ws.onopen = function(evt) { 
+            // console.log("Connection open ..."); 
+            ws.send(JSON.stringify(stop));
+            ws.close()
+          };
+      },
+      start(){
+        console.log("start")
+          var ws = new WebSocket("ws://192.168.1.27:8888/ws");
+          var start={"cmd":"start"}
+          ws.onopen = function(evt) { 
+            // console.log("Connection open ..."); 
+            ws.send(JSON.stringify(start));
+            ws.close()
+          };
       }
     },
     created(){
@@ -154,7 +178,7 @@ export default {
 
         ws.onmessage = (evt)=> {
           console.log( "Received Message: " + evt.data);
-          this.drawPie('hello')
+          this.drawPie('hello',evt.data)
         };
 
         ws.onclose = function(evt) {
