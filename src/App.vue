@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Head/>  
+	<Head/>  
    <router-view></router-view>
   </div>
 </template>
@@ -11,8 +11,8 @@ import Head from './components/Head'
 export default {
   name: 'App',
   components: {
-    Index,
-    Head
+	Index,
+	Head
   }
 }
 </script>
