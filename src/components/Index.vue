@@ -63,15 +63,44 @@ export default {
             formatter: "{value}CNY "
           }
         },
-        dataZoom: {
-          show: true,
-          realtime: true,
-          type: "slider",
-          fillerColor: "rgba(167,183,204,0.4)",
-          borderColor: "#ddd",
-          start: 0,
-          end: 30
-        },
+        // dataZoom: {
+        //   show: true,
+        //   realtime: true,
+        //   type: "slider",
+        //   fillerColor: "rgba(167,183,204,0.4)",
+        //   borderColor: "#ddd",
+        //   start: 0,
+        //   end: 30
+		// },
+		dataZoom: [
+			{
+				type: 'slider',
+				show: true,
+				xAxisIndex: [0],
+				start: 1,
+				end: 35
+			},
+			{
+				type: 'slider',
+				show: true,
+				yAxisIndex: [0],
+				left: '93%',
+				start: 0,
+				end: 100
+			},
+			{
+				type: 'inside',
+				xAxisIndex: [0],
+				start: 1,
+				end: 35
+			},
+			// {
+			// 	type: 'inside',
+			// 	yAxisIndex: [0],
+			// 	start: 0,
+			// 	end: 100
+			// }
+		],
         series: [
           {
             name: "卖一价格",
