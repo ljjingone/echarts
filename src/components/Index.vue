@@ -31,8 +31,10 @@ export default {
               subtext: ''
             },
             tooltip: {
-              trigger: 'axis'
+              trigger: 'axis',
+              
             },
+            animation: false,
             legend: {
               data:['卖一价格','买一价格']
             },
@@ -187,7 +189,9 @@ export default {
         ws.onerror = function(evt) {
           console.log("Connection error.");
         }; 
-        this.drawPie('hello')
+        // setInterval(()=>{
+          this.drawPie('hello')
+        // },5000) 
         // this.$nextTick(function() {
             
         // })
