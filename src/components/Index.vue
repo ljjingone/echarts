@@ -135,7 +135,7 @@ export default {
 				type: "line",
 				areaStyle: {normal: {
 					color:"#eee"
-					}},
+				}},
 				data: [],
 				label: {
 					normal: {
@@ -200,28 +200,38 @@ export default {
 		ws.send(JSON.stringify(start));
 		ws.close();
 	  };
-	}
+	},
+	init(){
+		var ws = new WebSocket("wss://api.huobi.pro/ws");
+		ws.onopen = function(evt) {
+		console.log("Connection open ...");
+		var aa={
+			"req": "market.btcusdt.kline.1min",
+			"id": "id10"
+			}
+		ws.send(aa);
+		
+		};
+
+		ws.onmessage = evt => {
+		console.log("Received Message: " + JSON.stringify(evt.data));
+		this.drawPie("hello", evt.data);
+		};
+
+		ws.onclose = (evt)=> {
+		console.log("Connection closed.");
+		this.init()
+		};
+		ws.onerror = (evt)=> {
+		console.log("Connection error.");
+		this.init()
+		};
+		}
   },
   created() {},
   //调用
   mounted() {
-	var ws = new WebSocket("ws://192.168.1.27:8888/ws");
-	ws.onopen = function(evt) {
-	  console.log("Connection open ...");
-	  ws.send("Hello WebSockets!");
-	};
-
-	ws.onmessage = evt => {
-	  console.log("Received Message: " + evt.data);
-	  this.drawPie("hello", evt.data);
-	};
-
-	ws.onclose = function(evt) {
-	  console.log("Connection closed.");
-	};
-	ws.onerror = function(evt) {
-	  console.log("Connection error.");
-	};
+	this.init();
 	// setInterval(()=>{
 	this.drawPie("hello");
 	// },5000)
