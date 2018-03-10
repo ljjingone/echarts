@@ -5,6 +5,10 @@ import App from './App'
 import axios from 'axios'
 import VueRouter from 'vue-router'
 import Routes from './routes'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
+
+Vue.use(ElementUI)
 
 Vue.prototype.$ajax=axios
 

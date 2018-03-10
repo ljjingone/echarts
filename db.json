@@ -400,6 +400,46 @@
       "sell":80
     },
     {
+      "name":"huobi6",
+      "buy":20,
+      "sell":60
+    },
+    {
+      "name":"huobi7",
+      "buy":15,
+      "sell":80
+    },
+    {
+      "name":"huobi8",
+      "buy":70,
+      "sell":100
+    },
+    {
+      "name":"huobi4",
+      "buy":18,
+      "sell":40
+    },
+    {
+      "name":"huobi5",
+      "buy":35,
+      "sell":60
+    },
+    {
+      "name":"huobi5",
+      "buy":35,
+      "sell":60
+    },
+    {
+      "name":"huobi6",
+      "buy":20,
+      "sell":60
+    },
+    {
+      "name":"huobi7",
+      "buy":15,
+      "sell":80
+    },
+    {
       "name":"huobi8",
       "buy":70,
       "sell":100
